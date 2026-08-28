@@ -1,0 +1,258 @@
+// ===== 双主题设计 Token（引用 CSS 自定义属性） =====
+$bg-primary: var(--bg-primary);
+$bg-secondary: var(--bg-secondary);
+$bg-card: var(--bg-card);
+$bg-card-hover: var(--bg-card-hover);
+$bg-elevated: var(--bg-elevated);
+
+$text-primary: var(--text-primary);
+$text-secondary: var(--text-secondary);
+$text-muted: var(--text-muted);
+
+$accent-energy: #ff6b35;
+$accent-energy-soft: rgba(255, 107, 53, 0.4);
+$accent-energy-glow: rgba(255, 107, 53, 0.3);
+$accent-vitality: #00d4aa;
+
+$price-color: var(--price-color);
+$price-muted: var(--price-muted);
+$original-price: var(--price-muted);
+
+$border-subtle: var(--border-subtle);
+$border-accent: var(--border-accent);
+$border-glass: var(--border-glass);
+$border-medium: var(--border-medium);
+$border-hover: var(--border-hover);
+
+$bg-subtle: var(--bg-subtle);
+$bg-barely: var(--bg-barely);
+$overlay-bg: var(--overlay-bg);
+$nav-bg: var(--nav-bg);
+$nav-border: var(--nav-border);
+$accent-gradient-light: var(--accent-gradient-light);
+$color-danger: var(--color-danger);
+$color-info: var(--color-info);
+$color-warning: var(--color-warning);
+$vitality-soft: var(--vitality-soft);
+$auth-bg: var(--auth-bg);
+$auth-input-shell-bg: var(--auth-input-shell-bg);
+$auth-input-core-bg: var(--auth-input-core-bg);
+$auth-brand-bg-end: var(--auth-brand-bg-end);
+
+$radius-xl: 1.25rem;
+$radius-2xl: 1.5rem;
+$radius-squircle: 1.5rem;
+
+$transition-premium: cubic-bezier(0.32, 0.72, 0, 1);
+
+// ===== 按钮设计 token =====
+$btn-transition: all 0.5s $transition-premium;
+$btn-disabled-opacity: 0.3;
+$btn-active-scale: 0.97;
+$btn-press-scale: 0.98;
+
+@mixin btn-base {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: $btn-transition;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active:not(:disabled) {
+    transform: scale($btn-press-scale);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-energy;
+    outline-offset: 2px;
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: $btn-disabled-opacity;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ===== Double-Bezel (Doppelrand) 嵌套架构 =====
+@mixin double-bezel($outer-radius: $radius-squircle, $gap: 0.375rem) {
+  $inner-radius: calc(#{$outer-radius} - #{$gap});
+
+  background: var(--border-glass);
+  border-radius: $outer-radius;
+  box-shadow: inset 0 0 0 0.5px var(--border-glass);
+
+  > * {
+    background: var(--bg-glass);
+    border-radius: $inner-radius;
+    backdrop-filter: blur(20px);
+    box-shadow:
+      inset 0 1px 0 var(--bg-glass-hover),
+      var(--shadow-glass);
+  }
+}
+
+@mixin glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: 0.5px solid var(--border-glass);
+  box-shadow:
+    inset 0 1px 0 var(--bg-glass-hover),
+    var(--shadow-glass);
+}
+
+@mixin solid-card {
+  background: var(--bg-card);
+  border-radius: $radius-xl;
+  box-shadow: var(--shadow-glass);
+  border: 0.5px solid var(--border-glass);
+  transition: all 0.5s $transition-premium;
+}
+
+@mixin card-hover {
+  transform: translateY(-6px);
+  border-color: $accent-energy;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+@mixin btn-inner-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--btn-inner-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s $transition-premium;
+  flex-shrink: 0;
+}
+
+// ===== 渐变流动动画（GPU 合成器） =====
+@keyframes gradient-flow-translate {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@mixin btn-hover-gradient-primary {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(135deg,
+      #ff6b35 0%,
+      #e85d26 22%,
+      #ffb082 48%,
+      #e85d26 78%,
+      #ff6b35 100%
+    );
+    animation: gradient-flow-translate 3s linear infinite;
+  }
+}
+
+@mixin btn-hover-gradient-soft {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(135deg,
+      rgba(255,107,53,0.08) 0%,
+      rgba(255,107,53,0.28) 25%,
+      rgba(255,160,96,0.2) 50%,
+      rgba(255,107,53,0.28) 75%,
+      rgba(255,107,53,0.08) 100%
+    );
+    animation: gradient-flow-translate 3s linear infinite;
+  }
+  border-color: $accent-energy;
+  color: $accent-energy;
+}
+
+@mixin btn-hover-gradient-vitality {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(135deg,
+      #00d4aa 0%,
+      #00b894 22%,
+      #00f0c8 48%,
+      #00b894 78%,
+      #00d4aa 100%
+    );
+    animation: gradient-flow-translate 3s linear infinite;
+  }
+  border-color: #00d4aa;
+  color: #fff;
+}
+
+// ===== 断点体系 =====
+$bp-xs: 360px;
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-2xl: 1400px;
+
+@mixin respond($bp) {
+  @if $bp == xs { @media (max-width: $bp-xs) { @content; } }
+  @if $bp == sm { @media (max-width: $bp-sm) { @content; } }
+  @if $bp == md { @media (max-width: $bp-md) { @content; } }
+  @if $bp == lg { @media (max-width: $bp-lg) { @content; } }
+  @if $bp == xl { @media (max-width: $bp-xl) { @content; } }
+}
+
+// ===== 触摸目标 mixin =====
+@mixin touch-target($min-size: 44px) {
+  min-width: $min-size;
+  min-height: $min-size;
+}
+
+// ===== 滚动揭示动画 =====
+@keyframes reveal-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@mixin scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  filter: blur(4px);
+  transition: all 0.8s $transition-premium;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}

@@ -1,0 +1,14 @@
+#部署时加 --spring.profiles.active=prod
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+#spring:
+#  profiles:
+#    active: prod

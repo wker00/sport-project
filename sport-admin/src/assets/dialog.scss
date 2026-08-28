@@ -1,0 +1,48 @@
+// ============================================================
+// 全局弹窗美化 — el-dialog 统一样式
+// ============================================================
+
+.el-dialog {
+  border-radius: 12px;
+  overflow: hidden;
+
+  // --- Header ---
+  &__header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    margin-right: 0;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.4;
+  }
+
+  &__headerbtn {
+    top: 20px;
+    right: 24px;
+
+    .el-dialog__close {
+      font-size: 18px;
+      color: #94a3b8;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #475569;
+      }
+    }
+  }
+
+  // --- Body ---
+  &__body {
+    padding: 20px 24px;
+  }
+
+  // --- Footer ---
+  &__footer {
+    padding: 12px 24px 20px;
+    border-top: 1px solid #f1f5f9;
+  }
+}

@@ -1,0 +1,62 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: sportzone-server-user
+  datasource:
+    url: jdbc:mysql://localhost:3306/sport_db?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+aliyun:
+  oss:
+    endpoint: #Your key information
+    access-key-id: #Your key information
+    access-key-secret: #Your key information
+    bucket-name: #Your key information
+    domain: #Your key information
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: is_deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+#springdoc:
+#  api-docs:
+#    path: /api-docs
+#  swagger-ui:
+#    path: /swagger-ui.html
+#    operations-sorter: method
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+jwt:
+  secret: sport-jwt-secret-key-2026-change-in-production
+  expiration: 86400000
+
+rsa:
+  privateKey: |-
+    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC8JARIuuYnv0nt6dhWGF6Y0LAds00NiWQjFTMFtyrFIBNz841tnoozGRF0u5JRLHwqtVQGgxrDEG/h15GW5wg1v5zm0ieowHChaEIcpW+XU9z1k97Fx3cEk4XMn4E+uQ46C4Xdzrpvl1Cwf/bZjL+rglvZBE2EK5nvUYU1pLRk9xRFjnwjTzMc4KD4waQcY9Xe5OXzn0CdN5vh7lfBwL938+t4UIB7N1OIOGmK+I4NmxBuUYfpkfzBPzfIAZjE30Cz5cYqqZ4E3IhDD4mi2l5pd3IOYW2yRnOC53aWgp2XjuZYraY2VsQKZmSSOibBiaarpMw/4ew48b867fLgEyxbAgMBAAECggEAKLkdCkcWMU1I6cvfjUcqFqa5MDyStZbjC2r3x8ltYwy92S/DEZKq9EN9UUiWc6aO28my/dPb85P3u6km9MReNRAcHKQpfG/nETDZeozemiFHZwqSQjoaC24JHJD770EsEKlU2P15wlS83O9d1ZoPFMcbLV6ujqjHYZNCI6naeC3ZkMtMrRyI21w7Y51B5SFfsfwQ9vIDHiRGr4s3GzErNQncQHU5e8ee84J+mhP610YFMglkLtxY/xfOKS9+MUKzqXIg2GG8Gq+mNGtDw8bqKjVkW6jYj/1hn26bmVGwv5iWBIuNctcwOU1etvbu1x8OvYYU4GebmrUfDLOT5+YfTQKBgQDHneTAPg4IItTCG2Z2yTv5V5WwCHHrUHP0hqYSgeQSzgp65nYGJWayLGQxiL5MFSM1tEUnoASRla4VksrwwCn4ZglCpAnCIzndPONE3f3JqUjdwSOnrzVL3F/bXbuhunoP+vr2M/tCsiPuVSUHVWsJRL9Z2BZmQbQs+YW/u6o37QKBgQDxSExX5qPtrvGgVgNYFphywo+J46buFq43ra9SqOWzF/V0GeOcSjDp6/WH4bJ1YXmNJLYQdnFZh9xdhKbfTLBba/50RG2XImHNMbFeNHVkRCx5xbUqb2t3kG+/iGlkmdMgrfV/A76bYtw8kt1FpODDPDOErYlPZ70qRjIz0cPcZwKBgHz/BBTVRtgVZ4C8w6ayUBnMnHEEeMFPOazu++Mu7vBPkQRwd4tVtD7xyTOzWuYtfkTMw1kSvImlXsMnjmi/DAj9a+MM8QdeI4fD7tRa5eZ3WKdzn64K6qa8MlIdGbcmG/URxkCRQE79Wb6OFofHFyVQpTnPNAeIMRjQjs4G54npAoGBANZ9wwBRVGEzKDG0xPxF+ffq5ddavUbierWcfUMqSihPoDA545FIkvsgfADzrsWShY/nlsJDyLgigs/P4NiZQB3Ff0q0mgfE1NSo3Fg2ojUkNbV7AHZc3lhH2k+WYLrB1GI0wwzKs2NHGynuFS6YSAbHObU039/rBMrT5EUUsNz5AoGBAL3FUOKVDjujqGOyb+ugvzpBKxO1c9P6yxpCZDBhTJUEgF8WYvSBB4L2htgXnMQ5bWp3/ASOEnIy1UNk0Mci7VQquKU5N9qyvSUdH8TnU1BooMXYYHhrZheYACswaoC7Yoh97gXIsXwSdvAuhhmKL8TRx0L/IK2L7pzKnqo0+WXX
+  publicKey: |-
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvCQESLrmJ79J7enYVhhemNCwHbNNDYlkIxUzBbcqxSATc/ONbZ6KMxkRdLuSUSx8KrVUBoMawxBv4deRlucINb+c5tInqMBwoWhCHKVvl1Pc9ZPexcd3BJOFzJ+BPrkOOguF3c66b5dQsH/22Yy/q4Jb2QRNhCuZ71GFNaS0ZPcURY58I08zHOCg+MGkHGPV3uTl859AnTeb4e5XwcC/d/PreFCAezdTiDhpiviODZsQblGH6ZH8wT83yAGYxN9As+XGKqmeBNyIQw+JotpeaXdyDmFtskZzgud2loKdl47mWK2mNlbECmZkkjomwYmmq6TMP+HsOPG/Ou3y4BMsWwIDAQAB
