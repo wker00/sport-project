@@ -7,8 +7,8 @@
 ```
 sport-project/
 ├── sport-admin/          # 管理后台前端
-├── sport-user/           # 用户端前端
-└── sport-server/         # 后端API服务
+├── sport-server/         # 后端API服务
+└── sport-user/           # 用户端前端
 ```
 
 ## 技术栈
